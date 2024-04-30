@@ -9,9 +9,9 @@ if len(sys.argv) < 2: sys.exit(-1)
 
 filename = sys.argv[1]
 workbook = openpyxl.load_workbook(filename)
-sheetname = workbook.get_sheet_names()[0] # retrive first sheet by defaul
+sheetname = workbook.sheetnames[0] # retrive first sheet by default
 
-worksheet = workbook.get_sheet_by_name(sheetname)
+worksheet = workbook[sheetname]
 csvwriter = csv.writer(sys.stdout, delimiter="\t")
 for row in worksheet.rows:
     stringized = map(lambda x: str(x.value) if x.value is not None else "", row)
